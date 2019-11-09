@@ -13,14 +13,14 @@ describe('Play game', () => {
     cy.get('#start-game').should('have.text', "Let's get started").click();
     cy.get('[class*="hearts-"]').should('have.length', 13);
 
-    // cy.get('#start-game').should('have.not.exist');
-    // suits.forEach((suit) => {
-    //   cy.get(`[class*="${suit}-"]`).should('have.length', 13);
-    // });
-    // cy.get('.card').then((cards) => {
-    //   const allCardClasses = [...cards].map((card) => card.classList[1]);
-    //   expect(allCardClasses).to.deep.equal(sortedCardsClasses);
-    // });
+    cy.get('#start-game').should('have.exist');
+    suits.forEach((suit) => {
+      cy.get(`[class*="${suit}-"]`).should('have.length', 13);
+    });
+    cy.get('.card').then((cards) => {
+      const allCardClasses = [...cards].map((card) => card.classList[1]);
+      expect(allCardClasses).to.deep.equal(sortedCardsClasses);
+    });
 
     // cy.contains('Shuffle').click();
     // cy.get('.card').then((cards) => {

@@ -1,4 +1,3 @@
-const suit = 'hearts';
 const cardsWrapper = document.querySelector('.cards-wrapper');
 
 function createCards() {
@@ -7,10 +6,35 @@ function createCards() {
   for (let i = 1; i <= 13; i += 1) {
     const cardObject = {
       value: i,
-      suit,
+      suit: 'hearts',
     };
     cards.push(cardObject);
   }
+
+  for (let i = 1; i <= 13; i += 1) {
+    const cardObject = {
+      value: i,
+      suit: 'spades',
+    };
+    cards.push(cardObject);
+  }
+
+  for (let i = 1; i <= 13; i += 1) {
+    const cardObject = {
+      value: i,
+      suit: 'diamonds',
+    };
+    cards.push(cardObject);
+  }
+
+  for (let i = 1; i <= 13; i += 1) {
+    const cardObject = {
+      value: i,
+      suit: 'clubs',
+    };
+    cards.push(cardObject);
+  }
+
 
   // For each dataObject, create a new card and append it to the DOM
   cards.forEach((card, i) => {
