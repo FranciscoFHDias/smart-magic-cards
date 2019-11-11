@@ -104,12 +104,32 @@ function shuffleCards() {
   }, 1000);
 }
 
+function magicCards() {
+  setTimeout(() => {
+    cardsWrapper.classList.add('shuffling');
+  });
+  clearCards();
+  cards.forEach((card, i) => {
+    const positionFromLeft = i * 30;
+    const cardElement = document.createElement('div');
+    cardElement.setAttribute('data-value', card.value);
+    cardElement.classList.add('card', `${card.suit}-${card.value}`);
+    cardElement.style.left = `${positionFromLeft}px`;
+    cardsWrapper.append(cardElement);
+  });
+  setTimeout(() => {
+    cardsWrapper.classList.remove('shuffling');
+  }, 1000);
+}
+
 function createButtons() {
   document.getElementById('start-game').style.display = 'none';
   createBtnShuffle();
   createBtnShow();
   createBtnMagic();
   document.getElementById('shuffle-game').addEventListener('click', shuffleCards);
+  document.getElementById('show-game').addEventListener('click', () => (!cardsWrapper.classList.contains('hidden') ? cardsWrapper.classList.add('hidden') : cardsWrapper.classList.remove('hidden')));
+  document.getElementById('magic-game').addEventListener('click', magicCards);
 }
 
 // Function to start the game by clearing the wrapper, creating
