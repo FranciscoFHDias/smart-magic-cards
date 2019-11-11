@@ -1,7 +1,8 @@
 const cardsWrapper = document.querySelector('.cards-wrapper');
+const buttonWrapper = document.querySelector('.btn-wrapper');
+const cards = [];
 
 function createCards() {
-  const cards = [];
   // Create an array with objects containing the value and the suit of each card
   for (let i = 1; i <= 13; i += 1) {
     const cardObject = {
@@ -34,11 +35,13 @@ function createCards() {
     };
     cards.push(cardObject);
   }
-
-
   // For each dataObject, create a new card and append it to the DOM
+}
+
+function placeCards() {
+  createCards();
   cards.forEach((card, i) => {
-    const positionFromLeft = i * 15;
+    const positionFromLeft = i * 30;
     const cardElement = document.createElement('div');
     cardElement.setAttribute('data-value', card.value);
     cardElement.classList.add('card', `${card.suit}-${card.value}`);
@@ -46,17 +49,74 @@ function createCards() {
     cardsWrapper.append(cardElement);
   });
 }
-
 // Function to clear out the initial button and create new buttons to play the game.
+function createBtnShuffle() {
+  const btnShuffle = document.createElement('button');
+  btnShuffle.style.margin = '0px, 5px, 0px, 5px';
+  btnShuffle.classList.add('btn', 'btn-lg', 'btn-secondary');
+  btnShuffle.setAttribute('id', 'shuffle-game');
+  btnShuffle.innerHTML = 'Shuffle';
+  buttonWrapper.append(btnShuffle);
+}
+
+function createBtnShow() {
+  const btnShow = document.createElement('button');
+  btnShow.style.margin = '0px, 5px, 0px, 5px';
+  btnShow.classList.add('btn', 'btn-lg', 'btn-secondary');
+  btnShow.setAttribute('id', 'show-game');
+  btnShow.innerHTML = 'Show/Hide';
+  buttonWrapper.append(btnShow);
+}
+
+function createBtnMagic() {
+  const btnMagic = document.createElement('button');
+  btnMagic.classList.add('btn', 'btn-lg', 'btn-secondary');
+  btnMagic.setAttribute('id', 'magic-game');
+  btnMagic.innerHTML = 'Magic';
+  buttonWrapper.append(btnMagic);
+}
+
+function clearCards() {
+  let card = cardsWrapper.lastElementChild;
+  while (card) {
+    cardsWrapper.removeChild(card);
+    card = cardsWrapper.lastElementChild;
+  }
+}
+
+function shuffleCards() {
+  setTimeout(() => {
+    cardsWrapper.classList.add('shuffling');
+  });
+  clearCards();
+  const cardsShuffled = [...cards];
+  cardsShuffled.sort(() => Math.random() - 0.5);
+  cardsShuffled.forEach((card, i) => {
+    const positionFromLeft = i * 30;
+    const cardElement = document.createElement('div');
+    cardElement.setAttribute('data-value', card.value);
+    cardElement.classList.add('card', `${card.suit}-${card.value}`);
+    cardElement.style.left = `${positionFromLeft}px`;
+    cardsWrapper.append(cardElement);
+  });
+  setTimeout(() => {
+    cardsWrapper.classList.remove('shuffling');
+  }, 1000);
+}
+
 function createButtons() {
-  // Your Code
+  document.getElementById('start-game').style.display = 'none';
+  createBtnShuffle();
+  createBtnShow();
+  createBtnMagic();
+  document.getElementById('shuffle-game').addEventListener('click', shuffleCards);
 }
 
 // Function to start the game by clearing the wrapper, creating
 // and appending the buttons and all the cards to the DOM
 function startGame() {
   createButtons();
-  createCards();
+  placeCards();
 }
 
 document.getElementById('start-game').addEventListener('click', startGame);

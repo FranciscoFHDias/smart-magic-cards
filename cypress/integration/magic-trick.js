@@ -22,11 +22,11 @@ describe('Play game', () => {
       expect(allCardClasses).to.deep.equal(sortedCardsClasses);
     });
 
-    // cy.contains('Shuffle').click();
-    // cy.get('.card').then((cards) => {
-    //   const allCardClasses = [...cards].map((card) => card.classList[1]);
-    //   expect(allCardClasses).to.not.deep.equal(sortedCardsClasses);
-    // });
+    cy.contains('Shuffle').click();
+    cy.get('.card').then((cards) => {
+      const allCardClasses = [...cards].map((card) => card.classList[1]);
+      expect(allCardClasses).to.not.deep.equal(sortedCardsClasses);
+    });
 
     // cy.contains('Show/Hide').click();
     // cy.get('.cards-wrapper').should('have.class', 'hidden');
