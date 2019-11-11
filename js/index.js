@@ -38,9 +38,8 @@ function createCards() {
   // For each dataObject, create a new card and append it to the DOM
 }
 
-function placeCards() {
-  createCards();
-  cards.forEach((card, i) => {
+function placeCards(cardsArray) {
+  cardsArray.forEach((card, i) => {
     const positionFromLeft = i * 30;
     const cardElement = document.createElement('div');
     cardElement.setAttribute('data-value', card.value);
@@ -76,29 +75,12 @@ function createBtnMagic() {
   buttonWrapper.append(btnMagic);
 }
 
-function clearCards() {
-  let card = cardsWrapper.lastElementChild;
-  while (card) {
-    cardsWrapper.removeChild(card);
-    card = cardsWrapper.lastElementChild;
-  }
-}
-
 function shuffleCards() {
   setTimeout(() => {
     cardsWrapper.classList.add('shuffling');
   });
-  clearCards();
   const cardsShuffled = [...cards];
-  cardsShuffled.sort(() => Math.random() - 0.5);
-  cardsShuffled.forEach((card, i) => {
-    const positionFromLeft = i * 30;
-    const cardElement = document.createElement('div');
-    cardElement.setAttribute('data-value', card.value);
-    cardElement.classList.add('card', `${card.suit}-${card.value}`);
-    cardElement.style.left = `${positionFromLeft}px`;
-    cardsWrapper.append(cardElement);
-  });
+  placeCards(cardsShuffled.sort(() => Math.random() - 0.5));
   setTimeout(() => {
     cardsWrapper.classList.remove('shuffling');
   }, 1000);
@@ -108,15 +90,7 @@ function magicCards() {
   setTimeout(() => {
     cardsWrapper.classList.add('shuffling');
   });
-  clearCards();
-  cards.forEach((card, i) => {
-    const positionFromLeft = i * 30;
-    const cardElement = document.createElement('div');
-    cardElement.setAttribute('data-value', card.value);
-    cardElement.classList.add('card', `${card.suit}-${card.value}`);
-    cardElement.style.left = `${positionFromLeft}px`;
-    cardsWrapper.append(cardElement);
-  });
+  placeCards(cards);
   setTimeout(() => {
     cardsWrapper.classList.remove('shuffling');
   }, 1000);
@@ -135,8 +109,9 @@ function createButtons() {
 // Function to start the game by clearing the wrapper, creating
 // and appending the buttons and all the cards to the DOM
 function startGame() {
+  createCards();
   createButtons();
-  placeCards();
+  placeCards(cards);
 }
 
 document.getElementById('start-game').addEventListener('click', startGame);
