@@ -2,9 +2,9 @@
 
 #### Approach
   - I tackle the exercise in the following order:
-    1. Read and understood the different documents and tests,
-    2. Addressed point by point in the requirement/bonus lists and tested before moving to the next point,
-    3. Improved the styles slightly and researched ways to overcome challenges with transitions.
+    * 1. Read and understood the different documents and tests,
+    * 2. Addressed point by point in the requirement/bonus lists and tested before moving to the next point,
+    * 3. Improved the styles slightly and researched ways to overcome challenges with transitions.
 
     Time to complete - 2 hours in total (excluding Read.me)
 
