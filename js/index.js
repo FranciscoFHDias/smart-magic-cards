@@ -46,7 +46,6 @@ function placeCards(cardsArray) {
     cardElement.setAttribute('data-value', card.value);
     cardElement.classList.add('card', `${card.suit}-${card.value}`);
     cardElement.style.left = `${positionFromLeft}px`;
-    cardElement.style.backgroundImage = `url("../assets/cards/${card.suit}-${card.value}.svg")`;
     cardsWrapper.append(cardElement);
   });
 }
