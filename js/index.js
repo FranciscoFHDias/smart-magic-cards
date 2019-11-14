@@ -75,10 +75,19 @@ function createBtnMagic() {
   buttonWrapper.append(btnMagic);
 }
 
+function clearCards() {
+  let card = cardsWrapper.lastElementChild;
+  while (card) {
+    cardsWrapper.removeChild(card);
+    card = cardsWrapper.lastElementChild;
+  }
+}
+
 function shuffleCards() {
   setTimeout(() => {
     cardsWrapper.classList.add('shuffling');
   });
+  clearCards();
   const cardsShuffled = [...cards];
   placeCards(cardsShuffled.sort(() => Math.random() - 0.5));
   setTimeout(() => {
@@ -90,6 +99,7 @@ function magicCards() {
   setTimeout(() => {
     cardsWrapper.classList.add('shuffling');
   });
+  clearCards();
   placeCards(cards);
   setTimeout(() => {
     cardsWrapper.classList.remove('shuffling');
