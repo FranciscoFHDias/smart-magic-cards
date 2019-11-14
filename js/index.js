@@ -3,8 +3,8 @@ const buttonWrapper = document.querySelector('.btn-wrapper');
 const buttons = ['Shuffle', 'Show/Hide', 'Magic'];
 const cards = [];
 
+// Create an array with objects containing the value and the suit of each card
 function createCards() {
-  // Create an array with objects containing the value and the suit of each card
   for (let i = 1; i <= 13; i += 1) {
     const cardObject = {
       value: i,
@@ -39,7 +39,6 @@ function createCards() {
 }
 
 // For each dataObject, create a new card and append it to the DOM
-
 function placeCards(cardsArray) {
   cardsArray.forEach((card, i) => {
     const positionFromLeft = i * 30;
@@ -50,29 +49,6 @@ function placeCards(cardsArray) {
     cardsWrapper.append(cardElement);
   });
 }
-// function createBtnShuffle() {
-//   const btnShuffle = document.createElement('button');
-//   btnShuffle.classList.add('btn', 'btn-lg', 'btn-secondary');
-//   btnShuffle.setAttribute('id', 'shuffle-game');
-//   btnShuffle.innerHTML = 'Shuffle';
-//   buttonWrapper.append(btnShuffle);
-// }
-
-// function createBtnShow() {
-//   const btnShow = document.createElement('button');
-//   btnShow.classList.add('btn', 'btn-lg', 'btn-secondary');
-//   btnShow.setAttribute('id', 'show-game');
-//   btnShow.innerHTML = 'Show/Hide';
-//   buttonWrapper.append(btnShow);
-// }
-
-// function createBtnMagic() {
-//   const btnMagic = document.createElement('button');
-//   btnMagic.classList.add('btn', 'btn-lg', 'btn-secondary');
-//   btnMagic.setAttribute('id', 'magic-game');
-//   btnMagic.innerHTML = 'Magic';
-//   buttonWrapper.append(btnMagic);
-// }
 
 function clearCards() {
   let card = cardsWrapper.lastElementChild;
@@ -93,31 +69,7 @@ function sortCards(a) {
   }, 1000);
 }
 
-// function shuffleCards() {
-//   setTimeout(() => {
-//     cardsWrapper.classList.add('shuffling');
-//   });
-//   clearCards();
-//   const cardsShuffled = [...cards];
-//   placeCards(cardsShuffled.sort(() => Math.random() - 0.5));
-//   setTimeout(() => {
-//     cardsWrapper.classList.remove('shuffling');
-//   }, 1000);
-// }
-
-// function magicCards() {
-//   setTimeout(() => {
-//     cardsWrapper.classList.add('shuffling');
-//   });
-//   clearCards();
-//   placeCards(cards);
-//   setTimeout(() => {
-//     cardsWrapper.classList.remove('shuffling');
-//   }, 1000);
-// }
-
 // Function to clear out the initial button and create new buttons to play the game.
-
 function createButtons() {
   document.getElementById('start-game').style.display = 'none';
   buttons.forEach((button) => {
